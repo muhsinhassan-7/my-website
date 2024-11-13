@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>images</title>
+    <link rel="stylesheet" href="style.css"> <!-- يمكنك استخدام نفس ملف الـ CSS هنا -->
+</head>
+<body>
+    <header>
+        <h2>إليك بعض الصور</h2>
+        <button onclick="goBack()">العودة إلى القائمة</button>
+    </header>
+
+    <section class="image-gallery">
+        <img src="muhsin.jpg" alt="صورة 1">
+        <img src="muhsin2.jpg" alt="صورة 2">
+        <img src="muhsin3.jpg" alt="صورة 3">
+        <img src="muhsin4.jpg" alt="صورة 4">
+        <img src="mısır.jpg" alt="صورة 5">
+        <img src="image6.jpg" alt="صورة 6">
+    </section>
+
+    <script>
+        // العودة إلى الصفحة السابقة
+        function goBack() {
+            window.history.back();  // العودة إلى الصفحة السابقة
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #209cff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #187bbf;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</body>
+</html>

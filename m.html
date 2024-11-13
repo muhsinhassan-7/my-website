@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Navigation Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="navigation">
+        <ul>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list" id="person-icon">
+                <a href="#">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                </a>
+            </li>
+            
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                </a>
+            </li>
+        </ul>
+        <div class="marker"></div> <!-- العلامة الصفراء -->
+    </div>
+
+    <script>
+        // إضافة مرجع للعلامة الصفراء
+        const marker = document.querySelector('.marker');
+        const listItems = document.querySelectorAll('.navigation ul li');
+
+        // وظيفة لتحريك العلامة الصفراء بشكل دقيق
+        function moveMarker(element) {
+            const rect = element.getBoundingClientRect();  // الحصول على موضع العنصر
+            marker.style.left = `${rect.left}px`; // تحريك العلامة إلى موضع العنصر
+        }
+
+        // إعدادات النقر على الأيقونات
+        // إعدادات النقر على الأيقونات
+        // الكود المعدل مع إضافة console.log:
+listItems.forEach((item) => {
+    item.addEventListener('click', () => {
+        // إزالة الفئة 'active' من العنصر الحالي
+        document.querySelector('.list.active')?.classList.remove('active');
+        item.classList.add('active');
+        
+        // تحريك العلامة الصفراء
+        moveMarker(item);
+
+        // طباعة إلى console لمعرفة أي أيقونة تم النقر عليها
+        console.log("تم النقر على الأيقونة: ", item.id);
+
+        // تحقق من id الأيقونة
+        if (item.id === 'person-icon') { // التحقق من id
+            console.log("تم النقر على أيقونة الشخص! الآن نفتح صفحة images.html");
+            window.location.href = "images.html"; // سيتم فتح صفحة الصور
+        } else {
+            document.getElementById('questions-section').style.display = 'none';
+            document.querySelector('.navigation').style.display = 'flex';
+        }
+    });
+});
+
+
+
+
+        // العودة إلى قائمة التنقل
+        function backToMenu() {
+            document.getElementById('questions-section').style.display = 'none';
+            document.querySelector('.navigation').style.display = 'flex';
+        }
+
+        // حفظ الإجابات في Local Storage
+        function saveAnswers() {
+            const answer1 = document.getElementById('question1').value;
+            const answer2 = document.getElementById('question2').value;
+
+            if (answer1 || answer2) {
+                localStorage.setItem('question1', answer1);
+                localStorage.setItem('question2', answer2);
+                alert('تم حفظ الإجابات بنجاح!');
+            } else {
+                alert('يرجى الإجابة على الأسئلة أولاً.');
+            }
+        }
+    </script>
+
+</body>
+</html>
